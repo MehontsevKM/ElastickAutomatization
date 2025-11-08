@@ -1,0 +1,7 @@
+---
+-name: "Inatall elastic"
+-hosts: "all"
+become: true
+  tasks:
+    -name: "Download and install the public signing key"
+      ansible.builtin.apt_key:
