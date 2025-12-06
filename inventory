@@ -1,0 +1,32 @@
+[all_nodes]
+vm1_master_node ansible_host=192.168.1.18
+vm2_worker_a ansible_host=192.168.1.19
+vm3_worker_b ansible_host=192.168.1.20
+
+# Группы для сценария KUBERNETES
+[k8s_master]
+vm1_master_node
+
+[k8s_workers]
+vm2_worker_a
+vm3_worker_b
+
+[kubernetes:children]
+k8s_master
+k8s_workers
+
+# Группы для сценария ELASTICSEARCH
+[elastic_master]
+vm1_master_node
+
+[elastic_workers]
+vm2_worker_a
+vm3_worker_b
+
+[elasticsearch:children]
+elastic_master
+elastic_workers
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=test
